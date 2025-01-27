@@ -4,9 +4,11 @@ const fs = require('fs');
 const app = express();
 app.use(express.json());
 const db = require('./db');
+require('dotenv').config();
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
     res.send('Welcome to our School');
@@ -22,6 +24,8 @@ const resultRoutes = require('./routes/resultRoutes');
 app.use("/student", studentRoutes);
 app.use("/result", resultRoutes);
 
-app.listen(3000, ()=>{
+
+
+app.listen(PORT, ()=>{
     console.log("listining on port 3000")
 });
